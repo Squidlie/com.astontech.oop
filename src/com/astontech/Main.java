@@ -10,10 +10,294 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
-        LessonFundamentalsLAB();
+        try {
+            ThrownExceptionLAB();
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
 
     }
+    private static void ThrownExceptionLAB() throws Exception{
+        String[] myStringArray = new String[4];
+        try{myStringArray[0] = "first";
+            myStringArray[1] = "second";
+            myStringArray[2] = "third";
+            myStringArray[3] = "fourth";
+            myStringArray[4] = "fifth";
+        }
+        catch (ArrayIndexOutOfBoundsException ex)
+        {
+            throw new Exception("Array is not large enough to store that many items.", ex);
+        }
+    }
+
+    private static void LessonCalculatorLAB(){
+        Scanner reader = new Scanner(System.in);
+        int firstNumber = 0;
+        while (true) {
+            System.out.print("Enter a number 0-9: ");
+            String inputOne = reader.nextLine();
+            firstNumber = Integer.parseInt(inputOne);
+        if (firstNumber >= 10){
+            System.out.println("INVALID");
+        }
+        else
+            break;
+        }
+        int secondNumber  = 0;
+        while (true) {
+            System.out.print("Enter a second number 0-9: ");
+            String inputTwo = reader.nextLine();
+            secondNumber = Integer.parseInt(inputTwo);
+        if (secondNumber >= 10){
+            System.out.println("INVALID");
+        }
+        else
+            break;
+        }
+        String inputOperator = null;
+        while (true) {
+            System.out.print("Enter an Operator(+,-,/,*): ");
+            inputOperator = reader.nextLine();
+        if (!"+".equals(inputOperator) && !"-".equals(inputOperator) && !"/".equals(inputOperator) && !"*".equals(inputOperator)) {
+            System.out.println("INVALID");
+        }
+        else
+            break;
+        }
+        switch (inputOperator)
+        {
+            case "+":
+                int plusResult = (firstNumber + secondNumber);
+                System.out.println("Result = " + plusResult);
+                break;
+            case "-":
+                int minusResult = (firstNumber - secondNumber);
+                System.out.println("Result = " + minusResult);
+                break;
+            case "/":
+                int divideResult = (firstNumber / secondNumber);
+                System.out.println("Result = " + divideResult + " Remainder: " + firstNumber % secondNumber);
+                break;
+            case "*":
+                int multiplyResult = (firstNumber * secondNumber);
+                System.out.println("Result = " + multiplyResult);
+                break;
+        }
+
+    }
+
+    private static void LessonFizzBuzzLAB(){
+        for(int x = 0; x <= 100; x++){
+            if(x % 3 ==0 && x % 5 !=0){
+                System.out.println("Fizz");
+            }
+            else if(x % 5 ==0 && x % 3 !=0){
+                System.out.println("Buzz");
+            }
+            else if(x % 15 ==0){
+                System.out.println("FizzBuzz");
+            }
+            else {
+                System.out.println(x);
+            }
+        }
+    }
+
+    private static void LessonExceptions(){
+    /*
+        String firstName = "Eric";
+        int x = Integer.parseInt(firstName);
+
+        System.out.print("Integer value: ");
+        System.out.println(x);
+
+
+
+        String firstName = "Eric";
+        try {
+            int x = Integer.parseInt(firstName);
+
+            System.out.print("Integer value: ");
+            System.out.println(x);
+        } catch(NumberFormatException ex) {
+            System.out.println("Exception: Invalid Number");
+        }
+
+
+        String firstName = null;
+        try {
+            int x = Integer.parseInt(firstName);
+
+            System.out.print("Integer value: ");
+            System.out.println(x);
+        }
+        catch (IllegalArgumentException ex)
+        {
+            System.out.println("Exception: String was null or empty");
+        }
+        catch (NullPointerException ex)
+        {
+            System.out.println("Exception: Null Pointer");
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Generic Exception");
+        }
+
+        String firstName = null;
+        try {
+            int x = Integer.parseInt(firstName);
+
+            System.out.print("Integer value: ");
+            System.out.println(x);
+        }
+        catch (IllegalArgumentException ex)
+        {
+            System.out.println("Exception: String was null or empty");
+        }
+        catch (NullPointerException ex)
+        {
+            System.out.println("Exception: Null Pointer");
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Generic Exception");
+        }
+        finally
+        {
+            System.out.println("Program has been completed regardless of exceptions");
+        }
+
+        String firstName = null;
+        try {
+            int x = Integer.parseInt(firstName);
+
+            System.out.print("Integer value: ");
+            System.out.println(x);
+        }
+        catch (IllegalArgumentException ex)
+        {
+            System.out.println("Exception: " + ex.toString());
+        }
+        catch (NullPointerException ex)
+        {
+            System.out.println("Exception: " + ex.toString());
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Exception: " + ex.toString());
+        }
+        finally
+        {
+            System.out.println("Program has been completed regardless of exceptions");
+        }
+
+
+        String firstName = null;
+        try {
+            int x = Integer.parseInt(firstName);
+
+            System.out.print("Integer value: ");
+            System.out.println(x);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("A custom exception from LessonExceptions method.", ex);
+        }
+    */
+    }
+
+    private static void LessonFlowControl(){
+        String name = "ericb";
+        if(name.equals( "dan")) {
+            System.out.println("correct first name");
+            System.out.println("another line");
+        } else {
+            System.out.println("incorrect first name");
+
+            if(name.length() > 10) {
+                System.out.println("very long first name");
+            } else if(name.length() > 5) {
+                System.out.println("long first name");
+            } else {
+                System.out.println("short first name");
+            }
+
+        }
+
+        switch(name) {
+            case "eric":
+                System.out.println("cool first name");
+                break;
+            case "dan":
+            case "danny":
+            case "daniel":
+                System.out.println("first name is dan, danny, or daniel");
+                break;
+
+            default:
+                System.out.println("some other first name");
+                break;
+        }
+    }
+
+    private static void LessonOperators(){
+        int val = 10;
+        System.out.println(val + 10);
+        System.out.println(val - 10);
+
+        int modVal = 10 % 3; //Only gives remainder
+        System.out.println(modVal);
+
+        System.out.println("increment after: ");
+        System.out.println(val++);
+        System.out.println(val++);
+        System.out.println(val++);
+        System.out.println(val);
+
+        val =10;
+        System.out.println("increment before: ");
+        System.out.println(++val);
+        System.out.println(++val);
+        System.out.println(++val);
+        System.out.println(val);
+
+        val = 10;
+        System.out.println("decrement after: ");
+        System.out.println(val--);
+        System.out.println(val--);
+        System.out.println(val--);
+        System.out.println(val);
+
+        val = 10;
+        System.out.println("decrement before: ");
+        System.out.println(--val);
+        System.out.println(--val);
+        System.out.println(--val);
+        System.out.println(val);
+
+        val = 10;
+        int anotherVal = 10;
+
+        if (val != anotherVal)
+            System.out.println("Not Equals");
+        else
+            System.out.println("Equals");
+
+        if(val ==10 && anotherVal == 10 || val == 11)
+            System.out.println("is true");
+        else
+            System.out.println("not true");
+
+        boolean boolVar = true;
+        if(!boolVar)
+            System.out.println("is true");
+        else
+            System.out.println("not true");
+
+    }
+
     private static void LessonFundamentalsLAB(){
         // Number 2: Accepts input and adds 1.75
         System.out.println("Question Number 2: ");
