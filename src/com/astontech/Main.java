@@ -10,11 +10,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            ThrownExceptionLAB();
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-        }
+        //try {
+            LessonCalculatorLAB();
+        //} catch (Exception ex) {
+        //    System.out.println(ex.toString());
+        //}
 
     }
     private static void ThrownExceptionLAB() throws Exception{
