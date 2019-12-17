@@ -8,9 +8,85 @@ import com.astontech.bo.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main() {
 
-        LessonMethods();
+        LessonCollections();
+
+    }
+
+    private static void LessonCollections(){
+
+    }
+
+    private static void LessonObjectsLAB(){
+        Address addressOne = new Address(1);
+        System.out.println(addressOne.getAddressId());
+
+        Client clientOne = new Client(1);
+        System.out.println(clientOne.getClientId());
+
+        ClientContact clientContactOne = new ClientContact(1);
+        System.out.println(clientContactOne.getClientContactId());
+
+        Email emailOne = new Email(1);
+        System.out.println(emailOne.getEmailId());
+
+        Employee employeeOne = new Employee("Eric", "Bye");
+        System.out.println(employeeOne.getEmployeeId());
+
+        EmployeeProject employeeProjectOne = new EmployeeProject(1);
+        System.out.println(employeeProjectOne.getEmployeeProjectId());
+
+        Entity entityOne = new Entity(1);
+        System.out.println(entityOne.getEntityId());
+
+        EntityType entityTypeOne = new EntityType(1);
+        System.out.println(entityTypeOne.getEntityTypeId());
+
+        LoyaltyAccount loyaltyAccountOne = new LoyaltyAccount(1);
+        System.out.println(loyaltyAccountOne.getLoyaltyAccountId());
+
+        LoyaltyCompany loyaltyCompanyOne = new LoyaltyCompany(1);
+        System.out.println(loyaltyCompanyOne.getLoyaltyCompanyId());
+
+        LoyaltyCompanyType loyaltyCompanyTypeOne = new LoyaltyCompanyType(1);
+        System.out.println(loyaltyCompanyTypeOne.getLoyaltyCompanyTypeId());
+
+        Person personOne = new Person(1);
+        System.out.println(personOne.getPersonId());
+
+        Phone phoneOne = new Phone(1);
+        System.out.println(phoneOne.getPhoneId());
+
+        Project projectOne = new Project(1);
+        System.out.println(projectOne.getProjectId());
+
+        ProjectStatus projectStatusOne = new ProjectStatus(1);
+        System.out.println(projectStatusOne.getProjectStatusId());
+
+        Review reviewOne = new Review(1);
+        System.out.println(reviewOne.getReviewId());
+
+        ReviewData reviewDataOne = new ReviewData(1);
+        System.out.println(reviewDataOne.getReviewDataId());
+
+        Training trainingOne = new Training(1);
+        System.out.println(trainingOne.getTrainingId());
+
+        TrainingData trainingDataOne = new TrainingData(1);
+        System.out.println(trainingDataOne.getTrainingDataId());
+
+        Vehicle vehicleOne = new Vehicle(1);
+        System.out.println(vehicleOne.getVehicleId());
+
+        VehicleMake vehicleMakeOne = new VehicleMake(1);
+        System.out.println(vehicleMakeOne.getVehicleMakeId());
+
+        VehicleModel vehicleModelOne = new VehicleModel(1);
+        System.out.println(vehicleModelOne.getVehicleModelId());
+
+        VehicleStatus vehicleStatusOne = new VehicleStatus(1);
+        System.out.println(vehicleStatusOne.getVehicleStatusId());
 
     }
 
