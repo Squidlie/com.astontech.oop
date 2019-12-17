@@ -1,22 +1,84 @@
-package com.astontech;
-
-import sun.awt.X11.XSystemTrayPeer;
+package com.astontech.console;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import com.astontech.bo.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        //try {
-            LessonCalculatorLAB();
-        //} catch (Exception ex) {
-        //    System.out.println(ex.toString());
-        //}
+
+        LessonMethods();
 
     }
+
+    private static void LessonMethods(){
+        /*
+            <access modifier> <instance/static> <return data type> <method name> (<data type <param name>, <data type> <param name>, ...) { body }
+            private             static              void            LessonMethods   (nothing)
+
+            public                                  int             getPersonId     (nothing)
+
+            public                                  void            setPersonId     (int personId)
+         */
+        /*Employee constructorEmployee = new Employee("Bipin", "Butala");
+        System.out.println(constructorEmployee.getFirstName() + " " + constructorEmployee.getLastName());
+
+        Employee const2Employee = new Employee("Simmer");
+        System.out.println(const2Employee.getLastName());*/
+
+        Employee employeeJames = new Employee("James","McRoberts");
+        System.out.println(employeeJames.GetFullName());
+
+    }
+
+    private static void LessonInheritance() {
+
+        Employee employeeBip = new Employee();
+        employeeBip.setFirstName("Bipin(e)");
+        employeeBip.setLastName("Butala(e)");
+        employeeBip.setId(3);
+
+        System.out.println(employeeBip.getId() + ": " + employeeBip.getFirstName() + " " + employeeBip.getLastName());
+
+        Person personBip = new Person();
+        personBip.setFirstName("Bipin(p)");
+        personBip.setLastName("Butala(p)");
+        personBip.setId(2);
+
+        System.out.println(personBip.getId() + ": " + personBip.getFirstName() + " " + personBip.getLastName());
+
+    }
+
+    private static void LessonClassObjects() {
+        Person myFirstPerson = new Person();
+        myFirstPerson.setFirstName("Bipin");
+        myFirstPerson.setLastName("Butala");
+        myFirstPerson.setTitle("Mr.");
+
+        Person mySecondPerson = new Person();
+        mySecondPerson.setFirstName("Sarah");
+        mySecondPerson.setLastName("Butala");
+        mySecondPerson.setTitle("Mrs.");
+
+        System.out.print(myFirstPerson.getTitle());
+        System.out.print(" ");
+        System.out.print(myFirstPerson.getFirstName());
+        System.out.print(" ");
+        System.out.println(myFirstPerson.getLastName());
+
+        System.out.print(mySecondPerson.getTitle());
+        System.out.print(" ");
+        System.out.print(mySecondPerson.getFirstName());
+        System.out.print(" ");
+        System.out.println(mySecondPerson.getLastName());
+
+        myFirstPerson.setId(3);
+        System.out.print(myFirstPerson.getId());
+    }
+
     private static void ThrownExceptionLAB() throws Exception{
         String[] myStringArray = new String[4];
         try{myStringArray[0] = "first";
