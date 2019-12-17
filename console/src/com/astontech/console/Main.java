@@ -1,20 +1,112 @@
 package com.astontech.console;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 import com.astontech.bo.*;
 
 public class Main {
 
-    public static void main() {
+    public static void main(String[] args) {
 
-        LessonCollections();
+        LessonCollectionsLAB();
 
     }
 
+    private static void LessonCollectionsLAB(){
+        Vehicle vehicleOne = new Vehicle(1);
+        VehicleModel vehicleModelOne = new VehicleModel(1);
+        vehicleOne.setVehicleId(1);
+        vehicleOne.setYear(1999);
+        vehicleOne.setLicensePlate("BDU638");
+        vehicleOne.setVIN("GHJ236T910IJDFNBG");
+        vehicleOne.setColor("Yellow");
+        vehicleOne.setIsPurchase(true);
+        vehicleOne.setPurchasePrice(15000);
+        vehicleOne.setPurchaseDate(new Date(99, 7, 18));
+        vehicleOne.setVehicleModelId(new VehicleModel(1));
+        vehicleModelOne.setVehicleModelName("F-150");
+
+
+        System.out.println(vehicleOne.getVehicleId());
+        System.out.println(vehicleOne.getYear());
+        System.out.println(vehicleOne.getLicensePlate());
+        System.out.println(vehicleOne.getVIN());
+        System.out.println(vehicleOne.getColor());
+        System.out.println(vehicleOne.getIsPurchase());
+        System.out.println(vehicleOne.getPurchasePrice());
+        System.out.println(vehicleOne.getPurchaseDate());
+        System.out.println(vehicleModelOne.getVehicleModelName());
+        System.out.println("");
+
+
+        Vehicle vehicleTwo = new Vehicle(2);
+        VehicleModel vehicleModelTwo = new VehicleModel(2);
+        vehicleTwo.setVehicleId(2);
+        vehicleTwo.setYear(2010);
+        vehicleTwo.setLicensePlate("KLW832");
+        vehicleTwo.setVIN("5S2H8EE2A945LHCSA");
+        vehicleTwo.setColor("Red");
+        vehicleTwo.setIsPurchase(true);
+        vehicleTwo.setPurchasePrice(23000);
+        vehicleTwo.setPurchaseDate(new Date(112, 11, 3));
+        vehicleTwo.setVehicleModelId(new VehicleModel(2));
+        vehicleModelTwo.setVehicleModelName("Corolla");
+
+
+        System.out.println(vehicleTwo.getVehicleId());
+        System.out.println(vehicleTwo.getYear());
+        System.out.println(vehicleTwo.getLicensePlate());
+        System.out.println(vehicleTwo.getVIN());
+        System.out.println(vehicleTwo.getColor());
+        System.out.println(vehicleTwo.getIsPurchase());
+        System.out.println(vehicleTwo.getPurchasePrice());
+        System.out.println(vehicleTwo.getPurchaseDate());
+        System.out.println(vehicleModelTwo.getVehicleModelName());
+
+        }
+
+    private static void LessonComplexProperties(){
+
+        EntityType emailWorkType = new EntityType("Work");
+        emailWorkType.setEntityTypeId(1);
+
+        Email myEmail = new Email("bipin.bip.com");
+        myEmail.setEmailType(emailWorkType);
+
+        System.out.println(myEmail.getEmailAddress() + " Type: " + myEmail.getEmailType().getEntityTypeName());
+
+        Employee myEmployee = new Employee();
+        myEmployee.getEmails().add(new Email("test@test.com"));
+        myEmployee.getEmails().add(new Email("dan@test.com"));
+        myEmployee.getEmails().add(new Email("jason@test.com"));
+
+        for(Email email : myEmployee.getEmails()){
+            System.out.println(email.getEmailAddress());
+        }
+    }
+
     private static void LessonCollections(){
+        List<Employee> employeeList = new ArrayList<>();
+
+        Employee emp1 = new Employee("Dan", "Simmer");
+        Employee emp2 = new Employee("James", "McRoberts");
+        Employee emp3 = new Employee("Sean", "Nilsen");
+        Employee emp4 = new Employee("Adrian", "Ratanyake");
+
+        employeeList.add(emp1);
+        employeeList.add(emp2);
+        employeeList.add(emp3);
+
+        employeeList.add(new Employee("Adrian", "Ratanyake"));
+        employeeList.add(new Employee("John","Doe"));
+
+        System.out.println(employeeList.get(0).getFullName());
+
+        for(Employee e : employeeList){
+            System.out.println(e.getFullName());
+        }
+
 
     }
 
@@ -28,7 +120,7 @@ public class Main {
         ClientContact clientContactOne = new ClientContact(1);
         System.out.println(clientContactOne.getClientContactId());
 
-        Email emailOne = new Email(1);
+        Email emailOne = new Email("filler email");
         System.out.println(emailOne.getEmailId());
 
         Employee employeeOne = new Employee("Eric", "Bye");
@@ -52,7 +144,7 @@ public class Main {
         LoyaltyCompanyType loyaltyCompanyTypeOne = new LoyaltyCompanyType(1);
         System.out.println(loyaltyCompanyTypeOne.getLoyaltyCompanyTypeId());
 
-        Person personOne = new Person(1);
+        Person personOne = new Person();
         System.out.println(personOne.getPersonId());
 
         Phone phoneOne = new Phone(1);
@@ -106,7 +198,7 @@ public class Main {
         System.out.println(const2Employee.getLastName());*/
 
         Employee employeeJames = new Employee("James","McRoberts");
-        System.out.println(employeeJames.GetFullName());
+        System.out.println(employeeJames.getFullName());
 
     }
 

@@ -1,26 +1,28 @@
 package com.astontech.bo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Person extends BaseBO{
 
-    //PersonId
+    //region PROPERTIES
     private int PersonId;
-    //Title
     private String Title;
-    //FirstName
     private String FirstName;
-    //LastName
     private String LastName;
-    //DisplayFirstName
     private String DisplayFirstName;
-    //Gender
     private String Gender;
+    private List<Email> Emails;
+    //endregion
 
-    public Person() {}
-
-    public Person(int personId) {
-        this.setPersonId(personId);
+    //region CONSTRUCTORS
+    public Person() {
+        this.setEmails(new ArrayList<>());
     }
 
+    //endregion
+
+    //region GETTERS/SETTERS
     public void setPersonId(int personId){
         this.PersonId = personId;
     }
@@ -63,11 +65,20 @@ public class Person extends BaseBO{
         return this.Gender;
     }
 
+    public List<Email> getEmails() {
+        return Emails;
+    }
+    public void setEmails(List<Email> emails) {
+        Emails = emails;
+    }
+    //endregion
+
+    //region CUSTOM METHODS
     public static boolean isNullOrEmpty(String s) {
         return s == null || s.length() == 0;
     }
 
-    public String GetFullName() {
+    public String getFullName() {
         if(isNullOrEmpty(this.FirstName) && isNullOrEmpty(this.LastName))
             return "No Name Set";
         else
@@ -81,6 +92,9 @@ public class Person extends BaseBO{
             }
 
     }
+
+
+    //endregion
 
 }
 

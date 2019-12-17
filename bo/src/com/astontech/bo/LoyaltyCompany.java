@@ -1,16 +1,22 @@
 package com.astontech.bo;
 
 public class LoyaltyCompany extends BaseBO{
+    //region PROPERTIES
     private int LoyaltyCompanyId;
+    private LoyaltyCompanyType LoyaltyCompanyTypeId;
     private String CompanyName;
-    private int EntityTypeId;
+    private EntityType EntityTypeId;
+    //endregion
 
+    //region CONSTRUCTORS
     public LoyaltyCompany() {}
 
     public LoyaltyCompany(int loyaltyCompanyId) {
         this.setLoyaltyCompanyId(loyaltyCompanyId);
     }
+    //endregion
 
+    //region GETTERS/SETTERS
     public int getLoyaltyCompanyId() {
         return LoyaltyCompanyId;
     }
@@ -25,10 +31,18 @@ public class LoyaltyCompany extends BaseBO{
         CompanyName = companyName;
     }
 
-    public int getEntityTypeId() {
+    public LoyaltyCompanyType getLoyaltyCompanyTypeId() {
+        return LoyaltyCompanyTypeId;
+    }
+    public void setLoyaltyCompanyTypeId(LoyaltyCompanyType loyaltyCompanyTypeId) {
+        LoyaltyCompanyTypeId = loyaltyCompanyTypeId;
+    }
+
+    public EntityType getEntityTypeId() {
         return EntityTypeId;
     }
-    public void setEntityTypeId(int entityTypeId) {
+    public void setEntityTypeId(EntityType entityTypeId) {
         EntityTypeId = entityTypeId;
     }
+    //endregion
 }

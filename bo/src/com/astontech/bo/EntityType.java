@@ -1,17 +1,24 @@
 package com.astontech.bo;
 
 public class EntityType extends BaseBO{
+    //region PROPERTIES
     private int EntityTypeId;
     private String EntityTypeName;
-    private int EntityId;
+    //endregion
 
+    //region CONSTRUCTORS
     public EntityType() {}
 
     public EntityType(int entityTypeId) {
         this.setEntityTypeId(entityTypeId);
     }
 
+    public EntityType(String entityTypeName) {
+        this.setEntityTypeName(entityTypeName);
+    }
+    //endregion
 
+    //region GETTERS/SETTERS
     public int getEntityTypeId() {
         return EntityTypeId;
     }
@@ -26,10 +33,5 @@ public class EntityType extends BaseBO{
         EntityTypeName = entityTypeName;
     }
 
-    public int getEntityId() {
-        return EntityId;
-    }
-    public void setEntityId(int entityId) {
-        EntityId = entityId;
-    }
+    //endregion
 }

@@ -1,17 +1,22 @@
 package com.astontech.bo;
 
 public class LoyaltyAccount extends BaseBO{
+    //region PROPERTIES
     private int LoyaltyAccountId;
-    private int LoyaltyCompanyId;
+    private LoyaltyCompany LoyaltyCompanyId;
     private String MemberNumber;
-    private int EmployeeId;
+    private Employee EmployeeId;
+    //endregion
 
+    //region CONSTRUCTORS
     public LoyaltyAccount() {}
 
     public LoyaltyAccount(int loyaltyAccountId) {
         this.setLoyaltyAccountId(loyaltyAccountId);
     }
+    //endregion
 
+    //region GETTERS/SETTERS
     public int getLoyaltyAccountId() {
         return LoyaltyAccountId;
     }
@@ -19,10 +24,10 @@ public class LoyaltyAccount extends BaseBO{
         LoyaltyAccountId = loyaltyAccountId;
     }
 
-    public int getLoyaltyCompanyId() {
+    public LoyaltyCompany getLoyaltyCompanyId() {
         return LoyaltyCompanyId;
     }
-    public void setLoyaltyCompanyId(int loyaltyCompanyId) {
+    public void setLoyaltyCompanyId(LoyaltyCompany loyaltyCompanyId) {
         LoyaltyCompanyId = loyaltyCompanyId;
     }
 
@@ -33,10 +38,11 @@ public class LoyaltyAccount extends BaseBO{
         MemberNumber = memberNumber;
     }
 
-    public int getEmployeeId() {
+    public Employee getEmployeeId() {
         return EmployeeId;
     }
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Employee employeeId) {
         EmployeeId = employeeId;
     }
+    //endregion
 }

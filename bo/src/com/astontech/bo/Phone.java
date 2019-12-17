@@ -1,39 +1,25 @@
 package com.astontech.bo;
 
-import java.util.Scanner;
-
 public class Phone extends BaseBO{
+    //region PROPERTIES
     private int PhoneId;
-    private int EntityTypeId;
-    private int ClientId;
-    private int PersonId;
+    private EntityType EntityTypeId;
+    private Client ClientId;
+    private Person PersonId;
     private int AreaCode;
     private int PhoneNumber;
     private int PhoneNumberPost;
+    //endregion
 
+    //region CONSTRUCTORS
     public Phone() {}
 
     public Phone(int phoneId) {
         this.setPhoneId(phoneId);
     }
+    //endregion
 
-    private void LABMethodOne(){
-        // gets all phone info for an Id
-        Scanner reader = new Scanner(System.in);
-        System.out.print("Enter a Client ID");
-        String inputId = reader.nextLine();
-        int inputtedId = Integer.parseInt(inputId);
-        System.out.println(getPhoneIdFromClient(inputtedId));
-        System.out.println(getEntityTypeIdFromClient(inputtedId));
-        System.out.println(getPersonIdFromClient(inputtedId));
-        System.out.println(getAreaCodeFromClient(inputtedId));
-        System.out.println(getPhoneNumberFromClient(inputtedId));
-        System.out.println(getPhoneNumberPostFromClient(inputtedId));
-    }
-
-    public int getPhoneIdFromClient(int ClientId) {
-        return PhoneId;
-    }
+    //region GETTERS/SETTERS
     public int getPhoneId() {
         return PhoneId;
     }
@@ -41,36 +27,27 @@ public class Phone extends BaseBO{
         PhoneId = phoneId;
     }
 
-    public int getEntityTypeIdFromClient(int ClientId) {
+    public EntityType getEntityTypeId() {
         return EntityTypeId;
     }
-    public int getEntityTypeId() {
-        return EntityTypeId;
-    }
-    public void setEntityTypeId(int entityTypeId) {
+    public void setEntityTypeId(EntityType entityTypeId) {
         EntityTypeId = entityTypeId;
     }
 
-    public int getClientId() {
+    public Client getClientId() {
         return ClientId;
     }
-    public void setClientId(int clientId) {
+    public void setClientId(Client clientId) {
         ClientId = clientId;
     }
 
-    public int getPersonIdFromClient(int ClientId) {
+    public Person getPersonId() {
         return PersonId;
     }
-    public int getPersonId() {
-        return PersonId;
-    }
-    public void setPersonId(int personId) {
+    public void setPersonId(Person personId) {
         PersonId = personId;
     }
 
-    public int getAreaCodeFromClient(int ClientId) {
-        return AreaCode;
-    }
     public int getAreaCode() {
         return AreaCode;
     }
@@ -78,9 +55,6 @@ public class Phone extends BaseBO{
         AreaCode = areaCode;
     }
 
-    public int getPhoneNumberFromClient(int ClientId) {
-        return PhoneNumber;
-    }
     public int getPhoneNumber() {
         return PhoneNumber;
     }
@@ -88,13 +62,11 @@ public class Phone extends BaseBO{
         PhoneNumber = phoneNumber;
     }
 
-    public int getPhoneNumberPostFromClient(int ClientId) {
-        return PhoneNumberPost;
-    }
     public int getPhoneNumberPost() {
         return PhoneNumberPost;
     }
     public void setPhoneNumberPost(int phoneNumberPost) {
         PhoneNumberPost = phoneNumberPost;
     }
+    //endregion
 }

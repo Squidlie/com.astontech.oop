@@ -3,16 +3,21 @@ package com.astontech.bo;
 import java.util.Date;
 
 public class VehicleMake extends BaseBO{
+    //region PROPERTIES
     private int VehicleMakeId;
     private String VehicleMakeName;
     private Date CreateDate;
+    //endregion
 
+    //region CONSTRUCTORS
     public VehicleMake() {}
 
     public VehicleMake(int vehicleMakeId) {
         this.setVehicleMakeId(vehicleMakeId);
     }
+    //endregion
 
+    //region GETTERS/SETTERS
     public int getVehicleMakeId() {
         return VehicleMakeId;
     }
@@ -33,4 +38,5 @@ public class VehicleMake extends BaseBO{
     public void setCreateDate(Date createDate) {
         CreateDate = createDate;
     }
+    //endregion
 }

@@ -1,29 +1,25 @@
 package com.astontech.bo;
 
-import java.util.Scanner;
-
 public class Email extends BaseBO {
+    //region PROPERTIES
     private int EmailId;
     private String EmailAddress;
-    private int EmployeeId;
-    private int EntityTypeId;
+    private EntityType EmailType;
+    //endregion
 
-    public Email() {}
-
-    public Email(int emailId) {
-        this.setEmailId(emailId);
+    //region CONSTRUCTORS
+    public Email() {
+        this.setEmailType(new EntityType());
     }
 
-    private void LABMethodTwo(){
-        Scanner reader = new Scanner(System.in);
-        System.out.print("Enter an Email Address");
-        String input = reader.nextLine();
-        getEmailIdFromEmail(input);
+    public Email(String emailAddress) {
+        this.setEmailType(new EntityType());
+        this.setEmailAddress(emailAddress);
     }
 
-    public int getEmailIdFromEmail(String EmailAddress) {
-        return EmailId;
-    }
+    //endregion
+
+    //region GETTERS/SETTERS
     public int getEmailId() {
         return EmailId;
     }
@@ -38,17 +34,12 @@ public class Email extends BaseBO {
         EmailAddress = emailAddress;
     }
 
-    public int getEmployeeId() {
-        return EmployeeId;
+    public EntityType getEmailType() {
+        return EmailType;
     }
-    public void setEmployeeId(int employeeId) {
-        EmployeeId = employeeId;
+    public void setEmailType(EntityType emailType) {
+        EmailType = emailType;
     }
-
-    public int getEntityTypeId() {
-        return EntityTypeId;
-    }
-    public void setEntityTypeId(int entityTypeId) {
-        EntityTypeId = entityTypeId;
-    }
+    //endregion
 }
+

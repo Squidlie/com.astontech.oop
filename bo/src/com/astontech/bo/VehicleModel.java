@@ -1,16 +1,21 @@
 package com.astontech.bo;
 
 public class VehicleModel extends BaseBO{
+    //region PROPERTIES
     private int VehicleModelId;
     private String VehicleModelName;
-    private int VehicleMakeId;
+    private VehicleMake VehicleMakeId;
+    //endregion
 
+    //region CONSTRUCTORS
     public VehicleModel() {}
 
     public VehicleModel(int vehicleModelId) {
         this.setVehicleModelId(vehicleModelId);
     }
+    //endregion
 
+    //region GETTERS/SETTERS
     public int getVehicleModelId() {
         return VehicleModelId;
     }
@@ -25,10 +30,11 @@ public class VehicleModel extends BaseBO{
         VehicleModelName = vehicleModelName;
     }
 
-    public int getVehicleMakeId() {
+    public VehicleMake getVehicleMakeId() {
         return VehicleMakeId;
     }
-    public void setVehicleMakeId(int vehicleMakeId) {
+    public void setVehicleMakeId(VehicleMake vehicleMakeId) {
         VehicleMakeId = vehicleMakeId;
     }
+    //endregion
 }

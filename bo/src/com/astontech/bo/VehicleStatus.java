@@ -3,18 +3,23 @@ package com.astontech.bo;
 import java.util.Date;
 
 public class VehicleStatus extends BaseBO{
+    //region PROPERTIES
     private int VehicleStatusId;
-    private int VehicleId;
-    private int EntityTypeId;
+    private Vehicle VehicleId;
+    private EntityType EntityTypeId;
     private String Notes;
     private Date CreateDate;
+    //endregion
 
+    //region CONSTRUCTOR
     public VehicleStatus() {}
 
     public VehicleStatus(int vehicleStatusId) {
         this.setVehicleStatusId(vehicleStatusId);
     }
+    //endregion
 
+    //region GETTER/SETTER
     public int getVehicleStatusId() {
         return VehicleStatusId;
     }
@@ -22,17 +27,17 @@ public class VehicleStatus extends BaseBO{
         VehicleStatusId = vehicleStatusId;
     }
 
-    public int getVehicleId() {
+    public Vehicle getVehicleId() {
         return VehicleId;
     }
-    public void setVehicleId(int vehicleId) {
+    public void setVehicleId(Vehicle vehicleId) {
         VehicleId = vehicleId;
     }
 
-    public int getEntityTypeId() {
+    public EntityType getEntityTypeId() {
         return EntityTypeId;
     }
-    public void setEntityTypeId(int entityTypeId) {
+    public void setEntityTypeId(EntityType entityTypeId) {
         EntityTypeId = entityTypeId;
     }
 
@@ -49,4 +54,5 @@ public class VehicleStatus extends BaseBO{
     public void setCreateDate(Date createDate) {
         CreateDate = createDate;
     }
+    //endregion
 }

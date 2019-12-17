@@ -3,17 +3,21 @@ package com.astontech.bo;
 import java.util.Date;
 
 public class Client extends BaseBO{
-
+    //region PROPERTIES
     private int ClientId;
     private String ClientName;
     private Date CreateDate;
+    //endregion
 
+    //region CONSTRUCTORS
     public Client() {}
 
     public Client(int clientId) {
         this.setClientId(clientId);
     }
+    //endregion
 
+    //region GETTERS/SETTERS
     public int getClientId() {
         return ClientId;
     }
@@ -34,4 +38,5 @@ public class Client extends BaseBO{
     public void setCreateDate(Date createDate) {
         CreateDate = createDate;
     }
+    //endregion
 }

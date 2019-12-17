@@ -3,21 +3,26 @@ package com.astontech.bo;
 import java.util.Date;
 
 public class EmployeeProject extends BaseBO{
+    //region PROPERTIES
     private int EmployeeProjectId;
-    private int ProjectId;
-    private int EmployeeId;
-    private int EntityTypeId;
-    private int VehicleId;
+    private Project ProjectId;
+    private Employee EmployeeId;
+    private EntityType EntityTypeId;
+    private Vehicle VehicleId;
     private Date StartDate;
     private Date EndDate;
     private String Notes;
+    //endregion
 
+    //region CONSTRUCTORS
     public EmployeeProject() {}
 
     public EmployeeProject(int employeeProjectId) {
         this.setEmployeeProjectId(employeeProjectId);
     }
+    //endregion
 
+    //region GETTERS/SETTERS
     public int getEmployeeProjectId() {
         return EmployeeProjectId;
     }
@@ -25,31 +30,31 @@ public class EmployeeProject extends BaseBO{
         EmployeeProjectId = employeeProjectId;
     }
 
-    public int getProjectId() {
+    public Project getProjectId() {
         return ProjectId;
     }
-    public void setProjectId(int projectId) {
+    public void setProjectId(Project projectId) {
         ProjectId = projectId;
     }
 
-    public int getEmployeeId() {
+    public Employee getEmployeeId() {
         return EmployeeId;
     }
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Employee employeeId) {
         EmployeeId = employeeId;
     }
 
-    public int getEntityTypeId() {
+    public EntityType getEntityTypeId() {
         return EntityTypeId;
     }
-    public void setEntityTypeId(int entityTypeId) {
+    public void setEntityTypeId(EntityType entityTypeId) {
         EntityTypeId = entityTypeId;
     }
 
-    public int getVehicleId() {
+    public Vehicle getVehicleId() {
         return VehicleId;
     }
-    public void setVehicleId(int vehicleId) {
+    public void setVehicleId(Vehicle vehicleId) {
         VehicleId = vehicleId;
     }
 
@@ -73,4 +78,5 @@ public class EmployeeProject extends BaseBO{
     public void setNotes(String notes) {
         Notes = notes;
     }
+    //endregion
 }

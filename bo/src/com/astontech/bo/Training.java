@@ -3,17 +3,22 @@ package com.astontech.bo;
 import java.util.Date;
 
 public class Training extends BaseBO{
+    //region PROPERTIES
     private int TrainingId;
-    private int EmployeeId;
+    private Employee EmployeeId;
     private String TrainingName;
     private Date CreateDate;
+    //endregion
 
+    //region CONSTRUCTORS
     public Training() {}
 
     public Training(int trainingId) {
         this.setTrainingId(trainingId);
     }
+    //endregion
 
+    //region GETTERS/SETTERS
     public int getTrainingId() {
         return TrainingId;
     }
@@ -21,10 +26,10 @@ public class Training extends BaseBO{
         TrainingId = trainingId;
     }
 
-    public int getEmployeeId() {
+    public Employee getEmployeeId() {
         return EmployeeId;
     }
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Employee employeeId) {
         EmployeeId = employeeId;
     }
 
@@ -41,4 +46,5 @@ public class Training extends BaseBO{
     public void setCreateDate(Date createDate) {
         CreateDate = createDate;
     }
+    //endregion
 }

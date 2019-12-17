@@ -3,17 +3,21 @@ package com.astontech.bo;
 import java.util.Date;
 
 public class ClientContact extends BaseBO{
-
+    //region PROPERTIES
     private int ClientContactId;
-    private int ClientId;
-    private int EntityTypeId;
+    private Client ClientId;
+    private EntityType ContactType;
+    //endregion
 
+    //region CONSTRUCTORS
     public ClientContact() {}
 
     public ClientContact(int clientContactId) {
         this.setClientContactId(clientContactId);
     }
+    //endregion
 
+    //region GETTERS/SETTERS
     public int getClientContactId() {
         return ClientContactId;
     }
@@ -21,17 +25,17 @@ public class ClientContact extends BaseBO{
         ClientContactId = clientContactId;
     }
 
-    public int getClientId() {
+    public Client getClientId() {
         return ClientId;
     }
-    public void setClientId(int clientId) {
+    public void setClientId(Client clientId) {
         ClientId = clientId;
     }
 
-    public int getEntityTypeId() {
-        return EntityTypeId;
+    public EntityType getEntityTypeId() {
+        return ContactType;
     }
-    public void setEntityTypeId(int entityTypeId) {
-        EntityTypeId = entityTypeId;
+    public void setEntityTypeId(EntityType entityTypeId) { ContactType = entityTypeId;
     }
+    //endregion
 }

@@ -3,6 +3,7 @@ package com.astontech.bo;
 import java.util.Date;
 
 public class Vehicle extends BaseBO{
+    //region PROPERTIES
     private int VehicleId;
     private int Year;
     private String LicensePlate;
@@ -11,14 +12,18 @@ public class Vehicle extends BaseBO{
     private boolean IsPurchase;
     private int PurchasePrice;
     private Date PurchaseDate;
-    private int VehicleModelId;
+    private VehicleModel VehicleModel;
+    //endregion
 
+    //region CONSTRUCTORS
     public Vehicle() {}
 
     public Vehicle(int vehicleId) {
         this.setVehicleId(vehicleId);
     }
+    //endregion
 
+    //region GETTERS/SETTERS
     public int getVehicleId() {
         return VehicleId;
     }
@@ -54,10 +59,10 @@ public class Vehicle extends BaseBO{
         Color = color;
     }
 
-    public boolean isPurchase() {
+    public boolean getIsPurchase() {
         return IsPurchase;
     }
-    public void setPurchase(boolean purchase) {
+    public void setIsPurchase(boolean purchase) {
         IsPurchase = purchase;
     }
 
@@ -75,10 +80,11 @@ public class Vehicle extends BaseBO{
         PurchaseDate = purchaseDate;
     }
 
-    public int getVehicleModelId() {
-        return VehicleModelId;
+    public VehicleModel getVehicleModelId() {
+        return VehicleModel;
     }
-    public void setVehicleModelId(int vehicleModelId) {
-        VehicleModelId = vehicleModelId;
+    public void setVehicleModelId(VehicleModel vehicleModelId) {
+        VehicleModel = vehicleModelId;
     }
+    //endregion
 }

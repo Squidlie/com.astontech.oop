@@ -3,13 +3,15 @@ package com.astontech.bo;
 import java.util.Date;
 
 public class Employee extends Person {
-
+    //region PROPERTIES
     private int EmployeeId;
     private Date HireDate;
     private Date TermDate;
     private Date BirthDate;
     private Date CreateDate;
+    //endregion
 
+    //region CONSTRUCTORS
     public Employee() {}
 
     public Employee(String firstName, String lastName) {
@@ -20,11 +22,13 @@ public class Employee extends Person {
     public Employee(int employeeId, String firstName) {
         this.setFirstName(firstName);
     }
-
     public Employee(String lastName){
         this.setLastName(lastName);
     }
 
+    //endregion
+
+    //region GETTERS/SETTERS
     public int getEmployeeId() {
         return EmployeeId;
     }
@@ -59,5 +63,5 @@ public class Employee extends Person {
     public void setCreateDate(Date createDate) {
         CreateDate = createDate;
     }
-
+    //endregion
 }

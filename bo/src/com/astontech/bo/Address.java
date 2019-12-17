@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Address extends BaseBO{
+    //region PROPERTIES
     private int AddressId;
     private int AddressNumber;
     private String Street;
@@ -12,32 +13,17 @@ public class Address extends BaseBO{
     private int StateId;
     private int CountryId;
     private Date DateCreate;
+    //endregion
 
+    //region CONSTRUCTORS
     public Address() {}
 
     public Address(int addressId) {
         this.setAddressId(addressId);
     }
+    //endregion
 
-    private void LABMethodThree(){
-        Scanner reader = new Scanner(System.in);
-        System.out.print("Enter an Address ID");
-        String input = reader.nextLine();
-        int inputId = Integer.parseInt(input);
-        getAddressNumberFromId(inputId);
-        getStreetFromId(inputId);
-        getStreet02FromId(inputId);
-        getCityFromId(inputId);
-    }
-
-    private void LABMethodFour(Date DateCreate){
-        this.setDateCreate(new Date());
-    }
-
-    private void LABMethodFive(){
-        System.out.println(getAddressId() + getAddressNumber() + getStreet() + getStreet02() + getCity());
-    }
-
+    //region GETTERS/SETTERS
     public int getAddressId() {
         return AddressId;
     }
@@ -97,4 +83,5 @@ public class Address extends BaseBO{
     public void setDateCreate(Date dateCreate) {
         DateCreate = dateCreate;
     }
+    //endregion
 }

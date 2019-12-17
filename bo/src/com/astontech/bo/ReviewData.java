@@ -3,18 +3,23 @@ package com.astontech.bo;
 import java.util.Date;
 
 public class ReviewData extends BaseBO{
+    //region PROPERTIES
     private int ReviewDataId;
-    private int ReviewId;
-    private int EntityTypeId;
+    private Review ReviewId;
+    private EntityType EntityTypeId;
     private String ReviewDataValue;
     private Date CreateDate;
+    //endregion
 
+    //region CONSTRUCTORS
     public ReviewData() {}
 
     public ReviewData(int reviewDataId) {
         this.setReviewDataId(reviewDataId);
     }
+    //endregion
 
+    //region GETTERS/SETTERS
     public int getReviewDataId() {
         return ReviewDataId;
     }
@@ -22,17 +27,17 @@ public class ReviewData extends BaseBO{
         ReviewDataId = reviewDataId;
     }
 
-    public int getReviewId() {
+    public Review getReviewId() {
         return ReviewId;
     }
-    public void setReviewId(int reviewId) {
+    public void setReviewId(Review reviewId) {
         ReviewId = reviewId;
     }
 
-    public int getEntityTypeId() {
+    public EntityType getEntityTypeId() {
         return EntityTypeId;
     }
-    public void setEntityTypeId(int entityTypeId) {
+    public void setEntityTypeId(EntityType entityTypeId) {
         EntityTypeId = entityTypeId;
     }
 
@@ -49,4 +54,5 @@ public class ReviewData extends BaseBO{
     public void setCreateDate(Date createDate) {
         CreateDate = createDate;
     }
+    //endregion
 }

@@ -3,20 +3,25 @@ package com.astontech.bo;
 import java.util.Date;
 
 public class ProjectStatus extends BaseBO{
+    //region PROPERTIES
     private int ProjectStatusId;
-    private int ProjectId;
-    private int EntityTypeId;
+    private Project ProjectId;
+    private EntityType EntityTypeId;
     private String Notes;
     private int PercentComplete;
     private Date StartDate;
     private Date EndDate;
+    //endregion
 
+    //region CONSTRUCTORS
     public ProjectStatus() {}
 
     public ProjectStatus(int projectStatusId) {
         this.setProjectStatusId(projectStatusId);
     }
+    //endregion
 
+    //region GETTERS/SETTERS
     public int getProjectStatusId() {
         return ProjectStatusId;
     }
@@ -24,17 +29,17 @@ public class ProjectStatus extends BaseBO{
         ProjectStatusId = projectStatusId;
     }
 
-    public int getProjectId() {
+    public Project getProjectId() {
         return ProjectId;
     }
-    public void setProjectId(int projectId) {
+    public void setProjectId(Project projectId) {
         ProjectId = projectId;
     }
 
-    public int getEntityTypeId() {
+    public EntityType getEntityTypeId() {
         return EntityTypeId;
     }
-    public void setEntityTypeId(int entityTypeId) {
+    public void setEntityTypeId(EntityType entityTypeId) {
         EntityTypeId = entityTypeId;
     }
 
@@ -65,4 +70,5 @@ public class ProjectStatus extends BaseBO{
     public void setEndDate(Date endDate) {
         EndDate = endDate;
     }
+    //endregion
 }
