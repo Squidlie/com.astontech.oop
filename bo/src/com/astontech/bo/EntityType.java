@@ -34,4 +34,8 @@ public class EntityType extends BaseBO{
     }
 
     //endregion
+
+    public String test_method(){
+        return "sub method";
+    }
 }

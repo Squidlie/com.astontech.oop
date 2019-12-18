@@ -1,16 +1,191 @@
 package com.astontech.console;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
-
 import com.astontech.bo.*;
+import com.astontech.common.Math;
+
+import javax.swing.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        LessonCollectionsLAB();
+        OOPPrinciplesLab4();
 
+    }
+
+    private static void OOPPrinciplesLab4(){
+        /*  Number 1
+        Static is a way to Instantiate something automatically within code. It does this at runtime.
+        An Instance is any occurrence of an object or method. If something is not static, it must be instanced
+        to be used. Examples can be found in the notes of LessonInstanceVsStatic
+
+            Number 2
+        Only primitive data types are value types, references simply point to data. If I create a reference object,
+        any additional objects created that equal the first object will not update the object, but if I set
+        a value type to be equal to a second object, the second object does create its own data/object. This
+        is sometimes referred to as cloning. Examples can be found in the notes of LessonValueVsRef()
+
+
+            Number 3:
+         */
+
+        System.out.println("---HASH TABLE---");
+        Hashtable<Integer, String> labHashTable = new Hashtable<>();
+        labHashTable.put(1, "What's the easiest way for an object to become wealthy?    Inheritance");
+        labHashTable.put(2, "Why did the programmer quit his job?                       He couldn't get arrays");
+        labHashTable.put(3, "Why did the programmer start smoking cigarettes?           He never listens to warnings, only errors.");
+        labHashTable.put(4, "Why didn't the programmer finish his shower?               His shampoo directions said 'Lather, Rinse, Repeat'");
+
+        for (Integer key : labHashTable.keySet()) {
+            System.out.println(labHashTable.get(key));
+        }
+        System.out.println("----------------");
+
+        System.out.println("---HASH MAP---");
+        HashMap<Integer, String> labHashMap = new HashMap<>();
+        labHashMap.put(1, "An SQL Query walks into a bar, walks up to two tables and says, 'Mind if I join you?'");
+        labHashMap.put(2, "What's the most used Language in programming?                    Profanity");
+        labHashMap.put(3, "Why did the database administrator leave his wife?               She had a one-to-many relationship.");
+        labHashMap.put(4,null);
+
+        for (Integer key : labHashMap.keySet()) {
+            System.out.println(labHashMap.get(key));
+        }
+        System.out.println("----------------");
+
+        System.out.println("---HASH SET---");
+        HashSet<String> labHashSet = new HashSet<>();
+        labHashSet.add("Inheritance");
+        labHashSet.add("Polymorphism");
+        labHashSet.add("Abstraction");
+        labHashSet.add("Encapsulation");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+        labHashSet.add("Recurrence");
+
+        for(String s : labHashSet){
+            System.out.println(s);
+        }
+    }
+
+    private static void LessonValueVsRef(){
+        //This is a reference type, so the secondEmp value is simply another name for the created firstEmp object
+        Employee firstEmp = new Employee();
+        firstEmp.setFirstName("Bipin");
+
+        Employee secondEmp = firstEmp;
+        firstEmp.setFirstName("Dan");
+        secondEmp.setFirstName("Bob");
+
+        System.out.println(secondEmp.getFirstName());
+
+        //This is a value type, so firstInt and secondInt are saved as separate values.
+        int firstInt = 10;
+        int secondInt = firstInt;
+
+        firstInt = 20;
+
+        System.out.println(secondInt);
+    }
+
+    private static void LessonHash() {
+
+        System.out.println("---HASH TABLE---");
+        Hashtable<Integer, String> firstHashTable = new Hashtable<>();
+        firstHashTable.put(1, "Inheritance");
+        firstHashTable.put(2, "Polymorphism");
+        firstHashTable.put(3, "Abstraction");
+        firstHashTable.put(4, "Encapsulation");
+
+        System.out.println("Value from given key: " + firstHashTable.get(3));
+        for (Integer key : firstHashTable.keySet()) {
+            System.out.println("key: " + key + " - value: " + firstHashTable.get(key));
+        }
+        System.out.println("----------------");
+
+
+        System.out.println("---HASH MAP---");
+        HashMap<Integer, String> firstHashMap = new HashMap<>();
+        firstHashMap.put(1, "Inheritance");
+        firstHashMap.put(2, "Polymorphism");
+        firstHashMap.put(3, "Abstraction");
+        firstHashMap.put(4, "Encapsulation");
+        firstHashMap.put(6, "Encapsulation");
+        firstHashMap.put(5,null);
+
+        System.out.println("Value from given key: " + firstHashMap.get(3));
+        for (Integer key : firstHashMap.keySet()) {
+            System.out.println("key: " + key + " - value: " + firstHashMap.get(key));
+        }
+        System.out.println("----------------");
+
+
+        System.out.println("---HASH SET---");
+        HashSet<String> firstHashSet = new HashSet<>();
+        firstHashSet.add("Inheritance");
+        firstHashSet.add("Polymorphism");
+        firstHashSet.add("Abstraction");
+        firstHashSet.add("Encapsulation");
+        firstHashSet.add("Encapsulation");
+
+        if(firstHashSet.contains("Encapsulation"))
+            System.out.println("value exists");
+        else
+            System.out.println("value does not exist");
+
+        for(String s : firstHashSet){
+            System.out.println(s);
+        }
+
+    }
+
+    private static void LessonPolymorphism(){
+        BaseBO baseBo = new BaseBO();
+        System.out.println(baseBo.test_method());
+
+        EntityType entityType = new EntityType();
+        System.out.println(entityType.test_method());
+    }
+
+    private static void LessonInstanceVsStatic(){
+        /*
+        If my Math were not static, ex:
+            public final double E = 2.71;
+            public final double PI = 3.14;
+
+            public int square(int val){
+            return val * val;}
+        I would have to instance it before being able to use it like I do in the active code below. ex:
+
+        Math InstanceOfMathClass = new Math(); --Here I am creating an instance I can then use to access
+                                                 the methods within Math. I have to call this instance each
+                                                 time I intend to use these methods.
+        System.out.println(InstanceOfMathClass.E);
+        System.out.println(InstanceOfMathClass.E);
+
+        System.out.println(InstanceOfMathClass.square(4);
+
+         */
+
+        //Because Math() is declared as static in Math.java, I do not have to instance it before using it
+        System.out.println(Math.E);
+        System.out.println(Math.PI);
+
+        System.out.println(Math.square(4));
     }
 
     private static void LessonCollectionsLAB(){
