@@ -1,9 +1,11 @@
 package com.astontech.bo;
 
+import common.helpers.StringHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Person extends BaseBO{
+public class Person extends BaseBO implements Comparable, IPerson{
 
     //region PROPERTIES
     private int PersonId;
@@ -11,7 +13,7 @@ public class Person extends BaseBO{
     private String FirstName;
     private String LastName;
     private String DisplayFirstName;
-    private String Gender;
+    public String Gender;
     private List<Email> Emails;
     //endregion
 
@@ -23,42 +25,42 @@ public class Person extends BaseBO{
     //endregion
 
     //region GETTERS/SETTERS
-    public void setPersonId(int personId){
+    public void setPersonId(int personId) {
         this.PersonId = personId;
     }
     public int getPersonId() {
         return this.PersonId;
     }
 
-    public void setTitle(String title){
+    public void setTitle(String title) {
         this.Title = title;
     }
     public String getTitle() {
         return this.Title;
     }
 
-    public void setFirstName(String firstName){
+    public void setFirstName(String firstName) {
         this.FirstName = firstName;
     }
     public String getFirstName() {
         return this.FirstName;
     }
 
-    public void setLastName(String lastName){
+    public void setLastName(String lastName) {
         this.LastName = lastName;
     }
     public String getLastName() {
         return this.LastName;
     }
 
-    public void setDisplayFirstName(String displayFirstName){
+    public void setDisplayFirstName(String displayFirstName) {
         this.DisplayFirstName = displayFirstName;
     }
     public String getDisplayFirstName() {
         return this.DisplayFirstName;
     }
 
-    public void setGender(String gender){
+    public void setGender(String gender) {
         this.Gender = gender;
     }
     public String getGender() {
@@ -73,28 +75,39 @@ public class Person extends BaseBO{
     }
     //endregion
 
-    //region CUSTOM METHODS
-    public static boolean isNullOrEmpty(String s) {
-        return s == null || s.length() == 0;
-    }
 
     public String getFullName() {
-        if(isNullOrEmpty(this.FirstName) && isNullOrEmpty(this.LastName))
+        if (StringHelper.isNullOrEmpty(this.FirstName) && StringHelper.isNullOrEmpty(this.LastName))
             return "No Name Set";
-        else
-            {
-                if(isNullOrEmpty(this.FirstName))
-                    return this.LastName;
-                else if(isNullOrEmpty(this.LastName))
-                    return this.FirstName;
-                else
-                    return this.FirstName + " " + this.LastName;
-            }
+        else {
+            if (StringHelper.isNullOrEmpty(this.FirstName))
+                return this.LastName;
+            else if (StringHelper.isNullOrEmpty(this.LastName))
+                return this.FirstName;
+            else
+                return this.FirstName + " " + this.LastName;
+        }
 
     }
 
 
-    //endregion
+    @Override
+    public boolean isMale() {
+        if (this.Gender == "male"){
+            return true;
+        } else
+            return false;
+    }
 
+
+    public int compareTo(Object temp) {
+        Person other = (Person) temp;
+
+        if (this.getPersonId() > other.getPersonId()) {
+            return 1;
+        } else if (this.getPersonId() < other.getPersonId()){
+            return -1;
+        } else return 0;
+    }
 }
 

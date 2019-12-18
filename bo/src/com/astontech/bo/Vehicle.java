@@ -2,7 +2,7 @@ package com.astontech.bo;
 
 import java.util.Date;
 
-public class Vehicle extends BaseBO{
+public class Vehicle extends BaseBO implements Comparable{
     //region PROPERTIES
     private int VehicleId;
     private int Year;
@@ -86,5 +86,18 @@ public class Vehicle extends BaseBO{
     public void setVehicleModelId(VehicleModel vehicleModelId) {
         VehicleModel = vehicleModelId;
     }
+
     //endregion
+
+    @Override
+    public int compareTo(Object temp) {
+        Vehicle other = (Vehicle) temp;
+
+        if (this.getPurchasePrice() > other.getPurchasePrice()) {
+            return 1;
+        } else if (this.getPurchasePrice() < other.getPurchasePrice()){
+            return -1;
+        } else return 0;
+
+    }
 }

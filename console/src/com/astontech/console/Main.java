@@ -2,16 +2,75 @@ package com.astontech.console;
 
 import java.util.*;
 import com.astontech.bo.*;
-import com.astontech.common.Math;
+import common.helpers.MathHelper;
+import interfaces.*;
+import org.apache.log4j.Logger;
 
-import javax.swing.*;
+import static jdk.nashorn.internal.objects.NativeMath.random;
 
 public class Main {
 
+    final static Logger loggerboi = Logger.getLogger(Main.class);
+
     public static void main(String[] args) {
 
-        OOPPrinciplesLab4();
+        LabOOPPrinciples5();
 
+    }
+
+    private static void LabOOPPrinciples5(){
+        Person newPerson = new Person();
+        newPerson.setFirstName("Eric");
+        newPerson.setLastName("Bye");
+        newPerson.setGender("male");
+        System.out.println(newPerson.getFullName());
+        System.out.println(newPerson.isMale());
+
+        Flip s = new Flip("String will be flipped");
+        System.out.println(s);
+
+
+
+    }
+
+    private static void LessonLogging(){
+        loggerboi.debug("This is a DEBUG log message");
+        loggerboi.info("This is an INFO log message");
+        loggerboi.warn("This is a WARN log message");
+        loggerboi.error("This is an ERROR log message");
+        loggerboi.fatal("This is a FATAL log message");
+
+        try {
+            int i = 10 / 0;
+        } catch (ArithmeticException ex){
+            loggerboi.error("An exception occurred: " + ex);
+        }
+    }
+
+    private static void LessonInterfacesTest(){
+        Site MN010 = new Site();
+        MN010.setSiteName("NM010");
+        MN010.setCoffeeMachines(2);
+        MN010.setConferenceRooms(1);
+        MN010.setCubicles(8);
+        MN010.setOffices(6);
+        MN010.setTrainingDesks(36);
+
+        Home BipsHouse = new Home();
+        BipsHouse.setAddress("1 Main St.");
+        BipsHouse.setOwner(new Employee("Bipin", "Butala"));
+
+        LessonInterfaces(MN010);
+        LessonInterfaces(BipsHouse);
+
+    }
+
+    private static void LessonInterfaces(ILocation Ilocation){
+        System.out.println("======================");
+        System.out.println("Location Name: " + Ilocation.getLocationName());
+        System.out.println("Can Have Meetings: " + Ilocation.canHaveMeetings());
+        System.out.println("Number of Workspaces: " + Ilocation.numberOfWorkspaces());
+        System.out.println("Has Coffee: " + Ilocation.hasCoffee());
     }
 
     private static void OOPPrinciplesLab4(){
@@ -182,10 +241,10 @@ public class Main {
          */
 
         //Because Math() is declared as static in Math.java, I do not have to instance it before using it
-        System.out.println(Math.E);
-        System.out.println(Math.PI);
+        System.out.println(MathHelper.E);
+        System.out.println(MathHelper.PI);
 
-        System.out.println(Math.square(4));
+        System.out.println(MathHelper.square(4));
     }
 
     private static void LessonCollectionsLAB(){

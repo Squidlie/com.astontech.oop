@@ -2,7 +2,7 @@ package com.astontech.bo;
 
 import java.util.Date;
 
-public class Employee extends Person {
+public class Employee extends Person implements IPerson{
     //region PROPERTIES
     private int EmployeeId;
     private Date HireDate;
@@ -64,4 +64,14 @@ public class Employee extends Person {
         CreateDate = createDate;
     }
     //endregion
+
+    @Override
+    public boolean isMale() {
+        if (this.Gender == "male"){
+            return true;
+        } else
+            return false;
+    }
+
+
 }
