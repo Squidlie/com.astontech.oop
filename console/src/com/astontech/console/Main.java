@@ -1,12 +1,15 @@
 package com.astontech.console;
 
+import java.sql.*;
 import java.util.*;
+import java.util.Date;
+
 import com.astontech.bo.*;
+import com.astontech.dao.*;
+import com.astontech.dao.mysql.*;
 import common.helpers.MathHelper;
 import interfaces.*;
 import org.apache.log4j.Logger;
-
-import static jdk.nashorn.internal.objects.NativeMath.random;
 
 public class Main {
 
@@ -14,8 +17,269 @@ public class Main {
 
     public static void main(String[] args) {
 
-        LabOOPPrinciples5();
+        DAOLab1();
 
+    }
+
+    private static void DAOLab1(){
+
+        //region EMPLOYEE DAO
+        //region MENU
+        EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+        List<Employee> employeeList = employeeDAO.getEmployeeList();
+        System.out.println("==================================");
+        for(Employee employee : employeeList){
+            System.out.println(employee.getEmployeeId()+ ") ");
+        }
+        System.out.println("==================================");
+        //endregion
+        //region PROMPT
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please select an Employee from list: ");
+        String employeeId = scanner.nextLine();
+        //endregion
+        //region GET EMPLOYEE DETAILS
+        Employee employeeInfo = employeeDAO.getEmployeeById(Integer.parseInt(employeeId));
+        System.out.println("========EMPLOYEE DETAILS=========");
+        System.out.println("Hire Date: " + employeeInfo.getHireDate());
+        System.out.println("TermDate: " + employeeInfo.getTermDate());
+        System.out.println("Birth Date: " + employeeInfo.getBirthDate());
+        System.out.println("Person Id: " + employeeInfo.getPersonId());
+        System.out.println("Create Date: " + employeeInfo.getCreateDate());
+        //endregion
+        //endregion
+
+        //region PHONE DAO
+        //region MENU
+        PhoneDAO phoneDAO = new PhoneDAOImpl();
+        List<Phone> phoneList = phoneDAO.getPhoneList();
+        System.out.println("==================================");
+        for(Phone phone : phoneList){
+            System.out.println(phone.getPhoneId()+ ") "); }
+        System.out.println("==================================");
+        //endregion
+        //region PROMPT
+        Scanner scannerTwo = new Scanner(System.in);
+        System.out.print("Please select a Phone from list: ");
+        String phoneId = scannerTwo.nextLine();
+        //endregion
+        //region GET PHONE INFO
+        Phone phoneInfo = phoneDAO.getPhoneById(Integer.parseInt(phoneId));
+        System.out.println("========PHONE DETAILS=========");
+        System.out.println("Phone Id: " + phoneInfo.getPhoneId());
+        System.out.println("Entity Type Id: " + phoneInfo.getEntityTypeId().getEntityTypeId());
+        System.out.println("Client Id: " + phoneInfo.getClientId().getClientId());
+        System.out.println("Person Id: " + phoneInfo.getPersonId().getPersonId());
+        System.out.println("Area Code: " + phoneInfo.getAreaCode());
+        System.out.println("Phone Number: " + phoneInfo.getPhoneNumber());
+        System.out.println("Phone Number Post: " + phoneInfo.getPhoneNumberPost());
+        //endregion
+        //endregion
+
+        //region EMAIL DAO
+        //region MENU
+        EmailDAO emailDAO = new EmailDAOImpl();
+        List<Email> emailList = emailDAO.getEmailList();
+        System.out.println("==================================");
+        for(Email email : emailList){
+            System.out.println(email.getEmailId()+ ") " + email.getEmailAddress()); }
+        System.out.println("==================================");
+        //endregion
+        //region PROMPT
+        Scanner scannerThree = new Scanner(System.in);
+        System.out.print("Please select an Email from list: ");
+        String emailId = scannerThree.nextLine();
+        //endregion
+        //region GET EMAIL INFO
+        Email emailInfo = emailDAO.getEmailById(Integer.parseInt(emailId));
+        System.out.println("========EMAIL DETAILS=========");
+        System.out.println("Email Id: " + emailInfo.getEmailId());
+        System.out.println("Email Address: " + emailInfo.getEmailAddress());
+        System.out.println("Employee Id: " + emailInfo.getEmployeeId().getEmployeeId());
+        System.out.println("Entity Type Id: " + emailInfo.getEmailType().getEntityTypeId());
+        //endregion
+        //endregion
+
+        //region VEHICLE DAO
+        //region MENU
+        VehicleDAO vehicleDAO = new VehicleDAOImpl();
+        List<Vehicle> vehicleList = vehicleDAO.getVehicleList();
+        System.out.println("==================================");
+        for(Vehicle vehicle : vehicleList){
+            System.out.println(vehicle.getVehicleId()+ ") "); }
+        System.out.println("==================================");
+        //endregion
+        //region PROMPT
+        Scanner scannerFour = new Scanner(System.in);
+        System.out.print("Please select a Vehicle from list: ");
+        String vehicleId = scannerFour.nextLine();
+        //endregion
+        //region GET VEHICLE INFO
+        Vehicle vehicleInfo = vehicleDAO.getVehicleById(Integer.parseInt(vehicleId));
+        System.out.println("========VEHICLE DETAILS=========");
+        System.out.println("Vehicle Id: " + vehicleInfo.getVehicleId());
+        System.out.println("Year: " + vehicleInfo.getYear());
+        System.out.println("License Plate: " + vehicleInfo.getLicensePlate());
+        System.out.println("VIN: " + vehicleInfo.getVIN());
+        System.out.println("Color: " + vehicleInfo.getColor());
+        System.out.println("Purchased: " + vehicleInfo.getIsPurchase());
+        System.out.println("Purchase Price: " + vehicleInfo.getPurchasePrice());
+        System.out.println("Purchase Date: " + vehicleInfo.getPurchaseDate());
+        System.out.println("Vehicle Model Id: " + vehicleInfo.getVehicleModelId().getVehicleModelId());
+        //endregion
+        //endregion
+
+        //region VEHICLE MODEL DAO
+        //region MENU
+        VehicleModelDAO vehicleModelDAO = new VehicleModelDAOImpl();
+        List<VehicleModel> vehicleModelList = vehicleModelDAO.getVehicleModelList();
+        System.out.println("==================================");
+        for(VehicleModel vehicleModel : vehicleModelList){
+            System.out.println(vehicleModel.getVehicleModelId()+ ") "); }
+        System.out.println("==================================");
+        //endregion
+        //region PROMPT
+        Scanner scannerFive = new Scanner(System.in);
+        System.out.print("Please select a Vehicle Model from list: ");
+        String vehicleModelId = scannerFive.nextLine();
+        //endregion
+        //region GET VEHICLE MODEL INFO
+        VehicleModel vehicleModelInfo = vehicleModelDAO.getVehicleModelById(Integer.parseInt(vehicleModelId));
+        System.out.println("========VEHICLE DETAILS=========");
+        System.out.println("Vehicle Model Id: " + vehicleModelInfo.getVehicleModelId());
+        System.out.println("Vehicle Model Name: " + vehicleModelInfo.getVehicleModelName());
+        System.out.println("Vehicle Make Id: " + vehicleModelInfo.getVehicleMakeId().getVehicleMakeId());
+        //endregion
+        //endregion
+
+        //region VEHICLE MAKE DAO
+        //region MENU
+        VehicleMakeDAO vehicleMakeDAO = new VehicleMakeDAOImpl();
+        List<VehicleMake> vehicleMakeList = vehicleMakeDAO.getVehicleMakeList();
+        System.out.println("==================================");
+        for(VehicleMake vehicleMake : vehicleMakeList){
+            System.out.println(vehicleMake.getVehicleMakeId()+ ") " + vehicleMake.getVehicleMakeName()); }
+        System.out.println("==================================");
+        //endregion
+        //region PROMPT
+        Scanner scannerSix = new Scanner(System.in);
+        System.out.print("Please select a Vehicle Make from list: ");
+        String vehicleMakeId = scannerSix.nextLine();
+        //endregion
+        //region GET VEHICLE MAKE INFO
+        VehicleMake vehicleMakeInfo = vehicleMakeDAO.getVehicleMakeById(Integer.parseInt(vehicleMakeId));
+        System.out.println("========VEHICLE DETAILS=========");
+        System.out.println("Vehicle Make Id: " + vehicleMakeInfo.getVehicleMakeId());
+        System.out.println("Vehicle Make Name: " + vehicleMakeInfo.getVehicleMakeName());
+        System.out.println("Create Date: " + vehicleMakeInfo.getCreateDate());
+        //endregion
+        //endregion
+
+    }
+
+    private static void LessonDAO(){
+        //region CREATE MENU
+        PersonDAO personDAO = new PersonDAOImpl();
+        List<Person> personList = personDAO.getPersonList();
+        System.out.println("==================================");
+        for(Person person : personList){
+            System.out.println(person.getPersonId()+ ") " + person.getLastName() + ", " + person.getFirstName());
+        }
+        System.out.println("==================================");
+        //endregion
+
+        //region PROMPT USER
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please select a Person from list: ");
+        String personId = scanner.nextLine();
+        //endregion
+
+        //region GET PERSON DETAILS
+        Person personDetail = personDAO.getPersonById(Integer.parseInt(personId));
+        System.out.println("========PERSON DETAILS=========");
+        System.out.println("Full Name: " + personDetail.getFullName());
+        System.out.println("Title: " + personDetail.getTitle());
+        System.out.println("Display First Name: " + personDetail.getDisplayFirstName());
+        System.out.println("Gender: " + personDetail.getGender());
+        //endregion
+    }
+
+    private static void DatabaseConnectionLAB(){
+
+    }
+
+    private static void LessonGetStoredProc(){
+        Connection conn = LessonDBConnection();
+        try {
+            String sp = "{call GetPerson(?,?)}";
+            CallableStatement cStmt = conn.prepareCall(sp);
+
+            cStmt.setInt(1, 20);
+            cStmt.setInt(2,1);
+            ResultSet rs = cStmt.executeQuery();
+
+            while(rs.next()){
+                loggerboi.info(rs.getInt(1) + ": " + rs.getString(2) + " " + rs.getString(3) + " "  + rs.getString(4));
+            }
+
+        } catch (SQLException sqlEx){
+            loggerboi.error(sqlEx);
+        }
+    }
+
+    private static void LessonExecQuery(){
+        Connection conn = LessonDBConnection();
+        try {
+            Statement statement = conn.createStatement();
+            String sql ="select PersonId, FirstName, LastName from Person";
+
+            ResultSet rs =statement.executeQuery(sql);
+            while(rs.next()){
+                int personId = rs.getInt(1);
+                String firstName = rs.getString(2);
+                String lastName = rs.getString(3);
+                loggerboi.info(personId + ": " +  firstName + " " + lastName);
+            }
+            conn.close();
+
+
+        } catch (SQLException sqlEx) {
+            loggerboi.error(sqlEx);
+        }
+    }
+
+    private static Connection LessonDBConnection(){
+        String dbHost = "localhost";
+        String dbName = "AstonEngineer";
+        String dbUser = "consoleUser";
+        String dbPass = "password";
+        String useSSL = "false";
+        String procBod = "true";
+
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+
+        } catch (ClassNotFoundException ex){
+            loggerboi.error("MySQL Driver not found! " + ex);
+            return null;
+        }
+        loggerboi.info("MySQL Driver Registered");
+
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":3306/" + dbName + "?useSSL=" + useSSL + "&noAccessToProcedureBodies=" + procBod, dbUser, dbPass);
+        } catch (SQLException ex) {
+            loggerboi.error("Connection failed! " + ex);
+            return null;
+        }
+        if(connection != null) {
+            loggerboi.info("Successfully connected to MySQL database");
+            return connection;
+        } else {
+            loggerboi.info("Connection failed!");
+            return null;
+        }
     }
 
     private static void LabOOPPrinciples5(){

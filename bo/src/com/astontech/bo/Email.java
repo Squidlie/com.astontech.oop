@@ -4,6 +4,7 @@ public class Email extends BaseBO {
     //region PROPERTIES
     private int EmailId;
     private String EmailAddress;
+    private Employee EmployeeId;
     private EntityType EmailType;
     //endregion
 
@@ -39,6 +40,13 @@ public class Email extends BaseBO {
     }
     public void setEmailType(EntityType emailType) {
         EmailType = emailType;
+    }
+
+    public Employee getEmployeeId() {
+        return EmployeeId;
+    }
+    public void setEmployeeId(Employee employeeId) {
+        EmployeeId = employeeId;
     }
     //endregion
 }
