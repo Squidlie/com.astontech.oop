@@ -8,6 +8,7 @@ public interface EmailDAO {
     public Email getEmailById(int emailId);
     public List<Email> getEmailList();
 
+    public boolean crudEmail(int queryId, Email email);
     public int insertEmail(Email email);
     public boolean updateEmail(Email email);
     public boolean deleteEmail(int emailId);

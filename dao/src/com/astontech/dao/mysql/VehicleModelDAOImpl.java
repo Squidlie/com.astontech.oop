@@ -4,6 +4,7 @@ import com.astontech.bo.Vehicle;
 import com.astontech.bo.VehicleMake;
 import com.astontech.bo.VehicleModel;
 import com.astontech.dao.VehicleModelDAO;
+import common.helpers.DateHelper;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -57,18 +58,67 @@ public class VehicleModelDAOImpl extends MySQL implements VehicleModelDAO {
 
     @Override
     public int insertVehicleModel(VehicleModel vehicleModel) {
-        return 0;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecuteVehicleModel(?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, INSERT);
+            cStmt.setInt(2, 0);
+            cStmt.setString(3, vehicleModel.getVehicleModelName());
+            cStmt.setInt(4, vehicleModel.getVehicleMakeId().getVehicleMakeId());
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id;
     }
 
     @Override
     public boolean updateVehicleModel(VehicleModel vehicleModel) {
-        return false;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecuteVehicleModel(?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, UPDATE);
+            cStmt.setInt(2, vehicleModel.getVehicleModelId());
+            cStmt.setString(3, vehicleModel.getVehicleModelName());
+            cStmt.setInt(4, vehicleModel.getVehicleMakeId().getVehicleMakeId());
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id > 0;
     }
 
     @Override
     public boolean deleteVehicleModel(int vehicleModelId) {
-        return false;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecuteVehicleModel(?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, DELETE);
+            cStmt.setInt(2, vehicleModelId);
+            cStmt.setString(3, "");
+            cStmt.setInt(4, 0);
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id > 0;
     }
+
     private static VehicleModel HydrateObject(ResultSet rs) throws SQLException {
         VehicleModel vehicleModel = new VehicleModel();
         vehicleModel.setVehicleModelId(rs.getInt(1));

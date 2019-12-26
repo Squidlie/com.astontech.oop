@@ -3,11 +3,13 @@ package com.astontech.dao.mysql;
 import com.astontech.bo.VehicleMake;
 import com.astontech.bo.VehicleModel;
 import com.astontech.dao.VehicleMakeDAO;
+import common.helpers.DateHelper;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class VehicleMakeDAOImpl extends MySQL implements VehicleMakeDAO{
@@ -56,17 +58,65 @@ public class VehicleMakeDAOImpl extends MySQL implements VehicleMakeDAO{
 
     @Override
     public int insertVehicleMake(VehicleMake vehicleMake) {
-        return 0;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecuteVehicleMake(?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, INSERT);
+            cStmt.setInt(2, 0);
+            cStmt.setString(3, vehicleMake.getVehicleMakeName());
+            cStmt.setDate(4, DateHelper.utilDateToSqlDate(vehicleMake.getCreateDate()));
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id;
     }
 
     @Override
     public boolean updateVehicleMake(VehicleMake vehicleMake) {
-        return false;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecuteVehicleMake(?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, UPDATE);
+            cStmt.setInt(2, vehicleMake.getVehicleMakeId());
+            cStmt.setString(3, vehicleMake.getVehicleMakeName());
+            cStmt.setDate(4, DateHelper.utilDateToSqlDate(vehicleMake.getCreateDate()));
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id > 0;
     }
 
     @Override
     public boolean deleteVehicleMake(int vehicleMakeId) {
-        return false;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecuteVehicleMake(?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, DELETE);
+            cStmt.setInt(2, vehicleMakeId);
+            cStmt.setString(3, "");
+            cStmt.setDate(4, DateHelper.utilDateToSqlDate(new Date(0,0,0)));
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id > 0;
     }
     private static VehicleMake HydrateObject(ResultSet rs) throws SQLException {
         VehicleMake vehicleMake = new VehicleMake();

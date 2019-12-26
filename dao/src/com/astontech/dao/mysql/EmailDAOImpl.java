@@ -53,19 +53,101 @@ public class EmailDAOImpl extends MySQL implements EmailDAO {
     }
 
     @Override
+    public boolean crudEmail(int queryId, Email email){
+        Connect();
+        int id = 0;
+        String empty = "";
+        try {
+            String sp = "{call ExecuteEmail(?,?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            if (queryId == INSERT){
+                cStmt.setInt(1, INSERT);
+                cStmt.setInt(2, 0);
+            }
+            else if (queryId == UPDATE){
+                cStmt.setInt(1, UPDATE);
+                cStmt.setInt(2, email.getEmailId());
+            }
+
+            cStmt.setString(3, email.getEmailAddress());
+            cStmt.setInt(4, email.getEmployeeId().getEmployeeId());
+            cStmt.setInt(5, email.getEmailType().getEntityTypeId());
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id > 0;
+    }
+
+    @Override
     public int insertEmail(Email email) {
-        return 0;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecuteEmail(?,?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, INSERT);
+            cStmt.setInt(2, 0);
+            cStmt.setString(3, email.getEmailAddress());
+            cStmt.setInt(4, email.getEmployeeId().getEmployeeId());
+            cStmt.setInt(5, email.getEmailType().getEntityTypeId());
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id;
     }
 
     @Override
     public boolean updateEmail(Email email) {
-        return false;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecuteEmail(?,?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, UPDATE);
+            cStmt.setInt(2, email.getEmailId());
+            cStmt.setString(3, email.getEmailAddress());
+            cStmt.setInt(4, email.getEmployeeId().getEmployeeId());
+            cStmt.setInt(5, email.getEmailType().getEntityTypeId());
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id > 0;
     }
 
     @Override
     public boolean deleteEmail(int emailId) {
-        return false;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecuteEmail(?,?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, DELETE);
+            cStmt.setInt(2, emailId);
+            cStmt.setString(3, "");
+            cStmt.setInt(4, 0);
+            cStmt.setInt(5, 0);
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id > 0;
     }
+
     private static Email HydrateObject(ResultSet rs) throws SQLException{
         Email email = new Email();
         email.setEmailId(rs.getInt(1));

@@ -9,6 +9,7 @@ public class Employee extends Person implements IPerson{
     private Date TermDate;
     private Date BirthDate;
     private Date CreateDate;
+    private Person PersonId;
     //endregion
 
     //region CONSTRUCTORS
@@ -63,6 +64,9 @@ public class Employee extends Person implements IPerson{
     public void setCreateDate(Date createDate) {
         CreateDate = createDate;
     }
+
+    public Person getPerson() { return PersonId; }
+    public void setPerson(Person personId) { PersonId = personId; }
     //endregion
 
     @Override

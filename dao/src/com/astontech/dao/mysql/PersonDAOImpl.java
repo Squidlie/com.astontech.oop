@@ -56,17 +56,74 @@ public class PersonDAOImpl extends MySQL implements PersonDAO {
 
     @Override
     public int insertPerson(Person person) {
-        return 0;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecutePerson(?,?,?,?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, INSERT);
+            cStmt.setInt(2, 0);
+            cStmt.setString(3, person.getTitle());
+            cStmt.setString(4, person.getFirstName());
+            cStmt.setString(5, person.getLastName());
+            cStmt.setString(6, person.getDisplayFirstName());
+            cStmt.setString(7, person.getGender());
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id;
     }
 
     @Override
     public boolean updatePerson(Person person) {
-        return false;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecutePerson(?,?,?,?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, UPDATE);
+            cStmt.setInt(2, person.getPersonId());
+            cStmt.setString(3, person.getTitle());
+            cStmt.setString(4, person.getFirstName());
+            cStmt.setString(5, person.getLastName());
+            cStmt.setString(6, person.getDisplayFirstName());
+            cStmt.setString(7, person.getGender());
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id > 0;
     }
 
     @Override
     public boolean deletePerson(int personId) {
-        return false;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecutePerson(?,?,?,?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, DELETE);
+            cStmt.setInt(2, personId);
+            cStmt.setString(3, "");
+            cStmt.setString(4, "");
+            cStmt.setString(5, "");
+            cStmt.setString(6, "");
+            cStmt.setString(7, "");
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id > 0;
     }
 
     private static Person HydrateObject(ResultSet rs) throws SQLException{

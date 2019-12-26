@@ -11,14 +11,280 @@ import common.helpers.MathHelper;
 import interfaces.*;
 import org.apache.log4j.Logger;
 
+import javax.swing.*;
+
 public class Main {
 
     final static Logger loggerboi = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
 
-        DAOLab1();
+        DAOLab2();
 
+    }
+    private static void DAOLab2(){
+
+        //region EMAIL CRUD
+        //region INSERT EMAIL
+        Email email = new Email();
+        email.setEmailId(10);
+        email.setEmailAddress("test@email.com");
+        Employee employee = new Employee();
+        employee.setEmployeeId(6);
+        email.setEmployeeId(employee);
+        EntityType entityType = new EntityType();
+        entityType.setEntityTypeId(2);
+        email.setEmailType(entityType);
+
+        EmailDAO emailDAO = new EmailDAOImpl();
+        int id = emailDAO.insertEmail(email);
+
+        loggerboi.info("New Person Record Inserted. ID = " + id);
+        //endregion
+        //region UPDATE EMAIL
+        EmailDAO emailDAO1 = new EmailDAOImpl();
+        Email email1 = emailDAO1.getEmailById(11);
+        email1.setEmailAddress("UPDATED!!!");
+
+        if(emailDAO1.updateEmail(email1)){
+            loggerboi.info("Email Updated Successfully");
+        } else{
+            loggerboi.info("Email Update Failed!");
+        }
+        //endregion
+        //region DELETE EMAIL
+        EmailDAO emailDAO2 = new EmailDAOImpl();
+
+        if(emailDAO2.deleteEmail(11))
+            loggerboi.info("Email Deleted Successfully");
+        else
+            loggerboi.info("Email Delete Failed!");
+        //endregion
+        //endregion
+
+        //region EMPLOYEE CRUD
+        //region INSERT EMPLOYEE
+        Employee employee1 = new Employee();
+        employee1.setEmployeeId(6);
+        employee1.setHireDate(new Date(110,10,10));
+        employee1.setTermDate(new Date(113, 7, 24));
+        employee1.setBirthDate(new Date(92, 11,22));
+        Person person = new Person();
+        person.setPersonId(10);
+        employee1.setPerson(person);
+
+        EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+        int id1 = employeeDAO.insertEmployee(employee1);
+
+        loggerboi.info("New Employee Record Inserted. ID = " + id1);
+        //endregion
+        //region UPDATE EMPLOYEE
+        EmployeeDAO employeeDAO1 = new EmployeeDAOImpl();
+        Employee employee2 = employeeDAO1.getEmployeeById(6);
+        employee2.setHireDate(new Date(5069, 11, 31));
+
+        if(employeeDAO1.updateEmployee(employee2)){
+            loggerboi.info("Employee Updated Successfully");
+        } else{
+            loggerboi.info("Employee Update Failed!");
+        }
+        //endregion
+        //region DELETE EMPLOYEE
+        EmployeeDAO employeeDAO2 = new EmployeeDAOImpl();
+
+        if(employeeDAO2.deleteEmployee(6))
+            loggerboi.info("Employee Deleted Successfully");
+        else
+            loggerboi.info("Employee Delete Failed!");
+        //endregion
+        //endregion
+
+        //region PHONE CRUD
+        //region INSERT PHONE
+        Phone phone = new Phone();
+        phone.setPhoneId(33);
+        EntityType entityType1 = new EntityType();
+        entityType1.setEntityTypeId(5);
+        phone.setEntityTypeId(entityType1);
+        Client client = new Client();
+        client.setClientId(12);
+        phone.setClientId(client);
+        Person person1 = new Person();
+        person1.setPersonId(10);
+        phone.setPersonId(person1);
+        phone.setAreaCode(666);
+        phone.setPhoneNumber(8675309);
+        phone.setPhoneNumberPost(1);
+
+        PhoneDAO phoneDAO = new PhoneDAOImpl();
+        int id2 = phoneDAO.insertPhone(phone);
+
+        loggerboi.info("New Phone Record Inserted. ID = " + id2);
+        //endregion
+        //region UPDATE PHONE
+        PhoneDAO phoneDAO1 = new PhoneDAOImpl();
+        Phone phone2 = phoneDAO1.getPhoneById(33);
+        phone2.setPhoneNumber(4206969);
+
+        if(phoneDAO1.updatePhone(phone2)){
+            loggerboi.info("Phone Updated Successfully");
+        } else{
+            loggerboi.info("Phone Update Failed!");
+        }
+        //endregion
+        //region DELETE PHONE
+        PhoneDAO PhoneDAO2 = new PhoneDAOImpl();
+
+        if(PhoneDAO2.deletePhone(33))
+            loggerboi.info("Phone Deleted Successfully");
+        else
+            loggerboi.info("Phone Delete Failed!");
+        //endregion
+        //endregion
+
+        //region VEHICLE CRUD
+        //region INSERT VEHICLE
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleId(18);
+        vehicle.setYear(2100);
+        vehicle.setLicensePlate("BEEP");
+        vehicle.setVIN("7777777");
+        vehicle.setColor("Blurple");
+        vehicle.setIsPurchase(true);
+        vehicle.setPurchasePrice(500);
+        vehicle.setPurchaseDate(new Date(205,10,15));
+        VehicleModel vehicleModel = new VehicleModel();
+        vehicleModel.setVehicleModelId(18);
+        vehicle.setVehicleModelId(vehicleModel);
+
+        VehicleDAO vehicleDAO = new VehicleDAOImpl();
+        int id3 = vehicleDAO.insertVehicle(vehicle);
+
+        loggerboi.info("New Vehicle Record Inserted. ID = " + id3);
+        //endregion
+        //region UPDATE VEHICLE
+        VehicleDAO vehicleDAO1 = new VehicleDAOImpl();
+        Vehicle vehicle2 = vehicleDAO1.getVehicleById(18);
+        vehicle2.setColor("Hot Pink");
+
+        if(vehicleDAO1.updateVehicle(vehicle2)){
+            loggerboi.info("Vehicle Updated Successfully");
+        } else{
+            loggerboi.info("Vehicle Update Failed!");
+        }
+        //endregion
+        //region DELETE VEHICLE
+        VehicleDAO vehicleDAO2 = new VehicleDAOImpl();
+
+        if(vehicleDAO2.deleteVehicle(18))
+            loggerboi.info("Vehicle Deleted Successfully");
+        else
+            loggerboi.info("Vehicle Delete Failed!");
+        //endregion
+        //endregion
+
+        //region VEHICLEMAKE CRUD
+        //region INSERT VEHICLEMAKE
+        VehicleMake vehicleMake = new VehicleMake();
+        vehicleMake.setVehicleMakeId(7);
+        vehicleMake.setVehicleMakeName("Future Car");
+        vehicleMake.setCreateDate(new Date(205,11,22));
+
+        VehicleMakeDAO vehicleMakeDAO = new VehicleMakeDAOImpl();
+        int id4 = vehicleMakeDAO.insertVehicleMake(vehicleMake);
+
+        loggerboi.info("New Vehicle Make Record Inserted. ID = " + id4);
+        //endregion
+        //region UPDATE VEHICLEMAKE
+        VehicleMakeDAO vehicleMakeDAO1 = new VehicleMakeDAOImpl();
+        VehicleMake vehicleMake2 = vehicleMakeDAO1.getVehicleMakeById(7);
+        vehicleMake2.setVehicleMakeName("CyberPunkFutureCars");
+
+        if(vehicleMakeDAO1.updateVehicleMake(vehicleMake2)){
+            loggerboi.info("Vehicle Make Updated Successfully");
+        } else{
+            loggerboi.info("Vehicle Make Update Failed!");
+        }
+        //endregion
+        //region DELETE VEHICLEMAKE
+        VehicleMakeDAO vehicleMakeDAO2 = new VehicleMakeDAOImpl();
+
+        if(vehicleMakeDAO2.deleteVehicleMake(7))
+            loggerboi.info("Vehicle Make Deleted Successfully");
+        else
+            loggerboi.info("Vehicle Make Delete Failed!");
+        //endregion
+        //endregion
+
+        //region VEHICLEMODEL CRUD
+        //region INSERT VEHICLEMODEL
+        VehicleModel vehicleModel1 = new VehicleModel();
+        vehicleModel1.setVehicleModelId(14);
+        vehicleModel1.setVehicleModelName("PowerDrive");
+        VehicleMake vehicleMake1 = new VehicleMake();
+        vehicleMake1.setVehicleMakeId(18);
+        vehicleModel1.setVehicleMakeId(vehicleMake1);
+
+        VehicleModelDAO vehicleModelDAO = new VehicleModelDAOImpl();
+        int id5 = vehicleModelDAO.insertVehicleModel(vehicleModel1);
+
+        loggerboi.info("New Vehicle Model Record Inserted. ID = " + id5);
+        //endregion
+        //region UPDATE VEHICLEMODEL
+        VehicleModelDAO vehicleModelDAO1 = new VehicleModelDAOImpl();
+        VehicleModel vehicleModel2 = vehicleModelDAO1.getVehicleModelById(14);
+        vehicleModel2.setVehicleModelName("CyberTruck 2k");
+
+        if(vehicleModelDAO1.updateVehicleModel(vehicleModel2)){
+            loggerboi.info("Vehicle Model Updated Successfully");
+        } else{
+            loggerboi.info("Vehicle Model Update Failed!");
+        }
+        //endregion
+        //region DELETE VEHICLEMODEL
+        VehicleModelDAO vehicleModelDAO2 = new VehicleModelDAOImpl();
+
+        if(vehicleModelDAO2.deleteVehicleModel(14))
+            loggerboi.info("Vehicle Model Deleted Successfully");
+        else
+            loggerboi.info("Vehicle Model Delete Failed!");
+        //endregion
+        //endregion
+    }
+
+    private static void LessonDAODelete(){
+        PersonDAO personDAO = new PersonDAOImpl();
+
+        if(personDAO.deletePerson(10))
+            loggerboi.info("Person Deleted Successfully");
+         else
+             loggerboi.info("Person Delete Failed!");
+    }
+
+    private static  void LessonDAOUpdate(){
+        PersonDAO personDAO = new PersonDAOImpl();
+        Person person = personDAO.getPersonById(10);
+        person.setDisplayFirstName("UPDATED!!!");
+
+        if(personDAO.updatePerson(person)){
+            loggerboi.info("Person Updated Successfully");
+        } else{
+            loggerboi.info("Person Update Failed!");
+        }
+    }
+
+    private static void LessonDAOInsert(){
+        Person person = new Person();
+        person.setTitle("Mr.");
+        person.setFirstName("Tony");
+        person.setLastName("Stark");
+        person.setDisplayFirstName("Iron Man");
+        person.setGender("M");
+
+        PersonDAO personDAO = new PersonDAOImpl();
+        int id = personDAO.insertPerson(person);
+
+        loggerboi.info("New Person Record Inserted. ID = " + id);
     }
 
     private static void DAOLab1(){

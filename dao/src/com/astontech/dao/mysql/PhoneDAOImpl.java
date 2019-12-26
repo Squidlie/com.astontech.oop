@@ -2,6 +2,7 @@ package com.astontech.dao.mysql;
 
 import com.astontech.bo.*;
 import com.astontech.dao.PhoneDAO;
+import common.helpers.DateHelper;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -55,17 +56,77 @@ public class PhoneDAOImpl extends MySQL implements PhoneDAO {
 
     @Override
     public int insertPhone(Phone phone) {
-        return 0;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecutePhone(?,?,?,?,?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, INSERT);
+            cStmt.setInt(2, 0);
+            cStmt.setInt(3, phone.getEntityTypeId().getEntityTypeId());
+            cStmt.setInt(4, phone.getClientId().getClientId());
+            cStmt.setInt(5, phone.getPersonId().getPersonId());
+            cStmt.setInt(6, phone.getAreaCode());
+            cStmt.setInt(7, phone.getPhoneNumber());
+            cStmt.setInt(8, phone.getPhoneNumberPost());
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id;
     }
 
     @Override
     public boolean updatePhone(Phone phone) {
-        return false;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecutePhone(?,?,?,?,?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, UPDATE);
+            cStmt.setInt(2, phone.getPhoneId());
+            cStmt.setInt(3, phone.getEntityTypeId().getEntityTypeId());
+            cStmt.setInt(4, phone.getClientId().getClientId());
+            cStmt.setInt(5, phone.getPersonId().getPersonId());
+            cStmt.setInt(6, phone.getAreaCode());
+            cStmt.setInt(7, phone.getPhoneNumber());
+            cStmt.setInt(8, phone.getPhoneNumberPost());
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id > 0;
     }
 
     @Override
     public boolean deletePhone(int phoneId) {
-        return false;
+        Connect();
+        int id = 0;
+        try {
+            String sp = "{call ExecutePhone(?,?,?,?,?,?,?,?)}";
+            CallableStatement cStmt = connection.prepareCall(sp);
+            cStmt.setInt(1, DELETE);
+            cStmt.setInt(2, phoneId);
+            cStmt.setInt(3, 0);
+            cStmt.setInt(4, 0);
+            cStmt.setInt(5, 0);
+            cStmt.setInt(6, 0);
+            cStmt.setInt(7, 0);
+            cStmt.setInt(8, 0);
+            ResultSet rs = cStmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt(1);
+            }
+        } catch (SQLException sqlEx){
+            logger.error(sqlEx);
+        }
+        return id > 0;
     }
 
     private static Phone HydrateObject(ResultSet rs) throws SQLException{
