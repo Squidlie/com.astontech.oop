@@ -5,7 +5,7 @@ import common.helpers.StringHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Person extends BaseBO implements Comparable, IPerson{
+public class Person extends BaseBO implements Comparable, IPerson, java.io.Serializable{
 
     //region PROPERTIES
     private int PersonId;
@@ -13,8 +13,10 @@ public class Person extends BaseBO implements Comparable, IPerson{
     private String FirstName;
     private String LastName;
     private String DisplayFirstName;
-    public String Gender;
+    public transient String Gender;
     private List<Email> Emails;
+
+    private static final long serialVersionUID = 54622233600l;
     //endregion
 
     //region CONSTRUCTORS
@@ -90,6 +92,9 @@ public class Person extends BaseBO implements Comparable, IPerson{
 
     }
 
+    public String ToString(){
+        return "PersonId=" + this.PersonId + " Full Name=" + this.getFullName() + " Gender=" + this.Gender;
+    }
 
     @Override
     public boolean isMale() {

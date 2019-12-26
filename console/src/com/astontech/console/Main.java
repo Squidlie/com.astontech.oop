@@ -1,5 +1,9 @@
 package com.astontech.console;
 
+import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.nio.file.FileAlreadyExistsException;
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
@@ -7,6 +11,7 @@ import java.util.Date;
 import com.astontech.bo.*;
 import com.astontech.dao.*;
 import com.astontech.dao.mysql.*;
+import common.helpers.DateHelper;
 import common.helpers.MathHelper;
 import interfaces.*;
 import org.apache.log4j.Logger;
@@ -19,9 +24,93 @@ public class Main {
 
     public static void main(String[] args) {
 
-        DAOLab2();
+        LessonRecursionComplex(new File("."));
 
     }
+
+    private static void LessonRecursionComplex(File dir) {
+        try {
+            File[] files = dir.listFiles();
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    loggerboi.info("directory: " + file.getCanonicalPath());
+                    LessonRecursionComplex(file);
+                } else {
+                    loggerboi.info("     file: " + file.getCanonicalPath());
+                }
+            }
+        } catch (IOException ioEx){
+            loggerboi.error(ioEx);
+        }
+    }
+
+    private static void LessonRecursion(int recursionCount){
+        loggerboi.info("Recursive Count = " + recursionCount);
+        if(recursionCount > 0)
+            LessonRecursion(recursionCount -1);
+    }
+
+    private static void LessonDeserialization(){
+        Person person = null;
+        try {
+            FileInputStream fileIn = new FileInputStream("./ser_person.txt");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            person = (Person) in.readObject();
+            in.close();
+            fileIn.close();
+
+        } catch (IOException ioEx) {
+            loggerboi.error(ioEx);
+        } catch (ClassNotFoundException clzEx){
+            loggerboi.error(clzEx);
+        }
+
+        loggerboi.info("Deserialized object: " + person.ToString());
+    }
+
+    private static void LessonSerialization(){
+        PersonDAO personDAO = new PersonDAOImpl();
+        Person person = personDAO.getPersonById(1);
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream("./ser_person.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(person);
+            out.close();
+            fileOut.close();
+            loggerboi.info("Object serialized and written to file: ./ser_person.txt");
+            loggerboi.info("Serialized object: " + person.ToString());
+        } catch (IOException ioEx) {
+            loggerboi.error(ioEx);
+        }
+    }
+
+    private static void LessonBoxUnboxCast(){
+        int x = 10;
+        Object o = x;
+        LessonReflectionAndGenerics(o.getClass());
+
+        int y = (int) o;
+        loggerboi.info(y);
+
+        double db = 1.92;
+        //int in = db;         implicit cast, will fail
+        int in = (int) db;   //explicit cast
+
+    }
+
+    private static <T> void LessonReflectionAndGenerics(Class<T> genericClass){
+
+        loggerboi.info("Full Name: " + genericClass.getName());
+        loggerboi.info("Simple Name: " + genericClass.getSimpleName());
+        for(Field field : genericClass.getDeclaredFields()){
+            loggerboi.info("Field: " + field.getName() + " -Type: " + field.getType());
+        }
+        for(Method method : genericClass.getDeclaredMethods()){
+            loggerboi.info("Method: " + method.getName());
+        }
+    }
+
     private static void DAOLab2(){
 
         //region EMAIL CRUD
